@@ -1,64 +1,81 @@
 package org.RobotWorlds.Server;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.PrintStream;
+import java.io.*;
+import java.net.ServerSocket;
 import java.net.Socket;
 
-public class Server implements Runnable{
+public class Server implements Runnable {
 
+    protected static final int PORT = 5000;
 
-    public static final int PORT = 5000;
-    private final BufferedReader in;
     private final PrintStream out;
-    private final String clientMachine;
+    Socket socket = null;
+    //        read data from a source (reading characters from server)
+    InputStreamReader inputStreamReader;
+    //        send messages
+    OutputStreamWriter outputStreamWriter;
+    //        reads large block an array at a time, can flush when full
+    BufferedReader bufferedReader;
+    BufferedWriter bufferedWriter;
+    //    waits and listens for connections
+    ServerSocket serverSocket = null;
 
     public Server(Socket socket) throws IOException {
-        /*
-         * The runnable generates a socket for the client to connect from a
-         * local machine if the client is able
-         * to establish a stable connection to the server
-         * a socket is generated to host the client on the server
-         */
-        clientMachine = socket.getInetAddress().getHostName();
+
+           /*        what connects machines.
+     the machines must have information about each other's network
+     connection.
+*/
+        String clientMachine = socket.getInetAddress().getHostName();
         System.out.println("Connection from " + clientMachine);
 
         out = new PrintStream(socket.getOutputStream());
-        in = new BufferedReader(new InputStreamReader(
+        BufferedReader in = new BufferedReader(new InputStreamReader(
                 socket.getInputStream()));
+        inputStreamReader = new InputStreamReader(socket.getInputStream());
+        outputStreamWriter = new OutputStreamWriter(socket.getOutputStream());
+
+        PrintStream out = new PrintStream(socket.getOutputStream());
+        /*sending responds to client*/
+
+        bufferedReader = new BufferedReader(inputStreamReader);
+        bufferedWriter = new BufferedWriter(outputStreamWriter);
+
         System.out.println("Waiting for client...");
     }
 
     public void run() {
-        /*
-         * The runnable generates a socket for the client
-         * to connect to if the client connects successfully
-         * the socket is occupied by the client. If the connection
-         * is not successful the server cannot run and terminates.
-         */
+//            used to create new socket everytime client accepts connection
         try {
-            String messageFromClient;
-            while ((messageFromClient = in.readLine()) != null) {
-                System.out.println("Message \"" + messageFromClient + "\" from " + clientMachine);
-                out.println("Thanks for this message: " + messageFromClient);
+            String MsgFromClient;
+            while ((MsgFromClient = bufferedReader.readLine()) != null) {
+
+
+//                    sends data back and forward
+
+                System.out.println("Client: " + MsgFromClient);
+                bufferedWriter.write("message received");
+                bufferedWriter.newLine();
+                bufferedWriter.flush();
+
+//                    if (MsgFromClient.equalsIgnoreCase("quit")){break;}
+                /*disconnects everything*/
+
+                if ("quit".equalsIgnoreCase(MsgFromClient)) {
+                    out.println("good bye");
+                    break;
+                }
             }
-        } catch (IOException ex) {
-            System.out.println("Shutting down single client server");
-        } finally {
-            closeQuietly();
-        }
-    }
+            System.out.println("Shutting down client server");
+            System.exit(0);
 
-    private void closeQuietly() {
-         /*
-          This method closes the client socket disconnecting
-          from the thread from the server.
-         */
-        try {
-            in.close();
+
+            socket.close();
+            inputStreamReader.close();
+            outputStreamWriter.close();
+            bufferedReader.close();
+            bufferedWriter.close();
             out.close();
-
         } catch (IOException ex) {
             ex.printStackTrace();
         }
