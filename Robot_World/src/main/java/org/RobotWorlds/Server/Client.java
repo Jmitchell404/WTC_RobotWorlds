@@ -17,6 +17,7 @@ and then exit.*/
         the machines must have information about each other's network
         connection.
  */
+        final PrintStream out;
         Socket socket = null;
 //        read data from a source (reading characters from server)
         InputStreamReader inputStreamReader = null;
@@ -32,7 +33,7 @@ and then exit.*/
             inputStreamReader = new InputStreamReader(socket.getInputStream());
             outputStreamWriter = new OutputStreamWriter(socket.getOutputStream());
 
-            PrintStream out = new PrintStream(socket.getOutputStream());
+            out = new PrintStream(socket.getOutputStream());
             BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 
             bufferedReader = new BufferedReader(inputStreamReader);
@@ -45,6 +46,7 @@ and then exit.*/
             out.flush();
 
             while (true) {
+//                whatever is input is written to server
                 String MsgToServer = scanner.nextLine();
                 bufferedWriter.write(MsgToServer);
                 bufferedWriter.newLine();
@@ -53,6 +55,7 @@ and then exit.*/
 //            string value returned from server, waiting for response
 
                 System.out.println("Response: "+ MsgFromServer);
+
 
                 if (MsgToServer.equalsIgnoreCase("quit")) {
                     out.println("good bye");
