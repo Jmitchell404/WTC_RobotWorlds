@@ -4,9 +4,9 @@ import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 
-class MultiServer extends Server{
+public class MultiServers extends Server{
 
-    public MultiServer(Socket socket) throws IOException {
+    public MultiServers(Socket socket) throws IOException {
         super(socket);
     }
 
