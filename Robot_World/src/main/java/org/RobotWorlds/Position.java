@@ -16,6 +16,11 @@ public class Position {
         this.x = x;
         this.y = y;
     }
+    // position on x and y axis
+    public Position(Position position) {
+        this.x = position.x;
+        this.y = position.y;
+    }
 
     // X axis
     public int getX() {
@@ -27,6 +32,25 @@ public class Position {
         return y;
     }
 
+    public void setX(int x) {
+        this.x = x;
+    }
+
+    public void setY(int y) {
+        this.y = y;
+    }
+    public void addY(int n) {
+        this.y += n;
+    }
+    public void addX(int n) {
+        this.x += n;
+    }
+    public void subtractY(int n) {
+        this.y = y - n;
+    }
+    public void subtractX(int n) {
+        this.x = x - n;
+    }
     @Override
     public boolean equals(Object o) {
         if (this == o){
