@@ -1,5 +1,4 @@
 package org.RobotWorlds;
-
 /**
  * The behaviour of the Robot is encapsulated in the Robot object.
  * The robot position in virtual world are tracked through a cartesian system
@@ -9,8 +8,8 @@ package org.RobotWorlds;
  */
 public class Position {
     // filed variables
-    private final int x;
-    private final int y;
+    private  int x;
+    private  int y;
 
     // position on x and y axis
     public Position(int x, int y) {
@@ -30,13 +29,26 @@ public class Position {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o){
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()){
+            return false;
+        }
 
         Position position = (Position) o;
 
-        if (x != position.x) return false;
+        if (x != position.x){
+            return false;
+        }
         return y == position.y;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = x;
+        result = 31 * result + y;
+        return result;
     }
 
     // checking bounds
