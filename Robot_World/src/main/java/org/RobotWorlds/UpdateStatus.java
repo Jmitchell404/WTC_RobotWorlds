@@ -1,2 +1,6 @@
-package org.RobotWorlds;public enum UpdateStatus {
+package org.RobotWorlds;
+
+enum UpdateStatus {
+        SUCCESS,
+        OBSTRUCTED
 }
