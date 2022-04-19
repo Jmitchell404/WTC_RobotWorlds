@@ -3,83 +3,86 @@ package org.RobotWorlds.Server;
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.ArrayList;
+import java.util.Locale;
+import java.util.Objects;
 
 public class Server implements Runnable {
 
     protected static final int PORT = 5000;
+    private Socket socket = null;
+    private BufferedReader bufferedReader;
+    private BufferedWriter bufferedWriter;
+    private String robotName;
 
-
-    private final PrintStream out;
-    Socket socket = null;
-    //        read data from a source (reading characters from server)
-    InputStreamReader inputStreamReader;
-    //        send messages
-    OutputStreamWriter outputStreamWriter;
-    //        reads large block an array at a time, can flush when full
-    BufferedReader bufferedReader;
-    BufferedWriter bufferedWriter;
-    //    waits and listens for connections
-//    ServerSocket serverSocket = null;
 
     public Server(Socket socket) throws IOException {
-
-           /*        what connects machines.
+         /*        what connects machines.
      the machines must have information about each other's network
-     connection.
-*/
-        String clientMachine = socket.getInetAddress().getHostName();
-        System.out.println("Connection from " + clientMachine);
+     connection.*/
+        try {
+            this.socket = socket;
 
-//        These will allow for two-way communication to and from the server.
-        out = new PrintStream(socket.getOutputStream());
-        /*sending responds to client, outputToServer*/
-        outputStreamWriter = new OutputStreamWriter(socket.getOutputStream());
+            String clientMachine = socket.getInetAddress().getHostName();
+            System.out.println("Connection from " + clientMachine);
 
+            /*sending responds to client, outputToServer, managed*/
+            this.bufferedWriter = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
+            /*receiving responds from client,inputToServer*/
+            this.bufferedReader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+            this.robotName = bufferedReader.readLine();
 
-        /*receiving responds from client,inputToServer*/
-        BufferedReader in = new BufferedReader(new InputStreamReader(
-                socket.getInputStream()));
-        inputStreamReader = new InputStreamReader(socket.getInputStream());
+            Respond("Robot launched ");
 
-
-        bufferedReader = new BufferedReader(inputStreamReader);
-        bufferedWriter = new BufferedWriter(outputStreamWriter);
-
-        System.out.println("Waiting for client...");
+        }catch(IOException ex){
+            closing(socket,bufferedReader,bufferedWriter);
+        }
     }
 
-    public void run() {
+
+    public void Respond(String MsgFromClient){
+//        sending response
         try {
-            String MsgFromClient;
-            while ((MsgFromClient = bufferedReader.readLine()) != null) {
+            System.out.println(robotName+": " + MsgFromClient);
+            bufferedWriter.write("Received message ");
+            bufferedWriter.newLine();
+            bufferedWriter.flush();
+        }catch(IOException ex){
+                closing(socket, bufferedReader, bufferedWriter);
+        }
+    }
 
-//              turning streams into usable data,sends data back and forward
-
-                System.out.println(MsgFromClient);
-                bufferedWriter.write("Thanks robot, message received");
-                bufferedWriter.newLine();
-                bufferedWriter.flush();
-
-//                    if (MsgFromClient.equalsIgnoreCase("quit")){break;}
-                /*disconnects everything*/
-
-                if ("quit".equalsIgnoreCase(MsgFromClient)) {
-                    out.println("good bye");
-                    System.out.println("Shutting down server");
-                    System.exit(0);
-                    break;
-                }
+    public void closing(Socket socket, BufferedReader bufferedReader,BufferedWriter bufferedWriter){
+        try {
+            if (bufferedReader != null){
+                bufferedReader.close();
             }
-
-
-            socket.close();
-            inputStreamReader.close();
-            outputStreamWriter.close();
-            bufferedReader.close();
-            bufferedWriter.close();
-            out.close();
-        } catch (IOException ex) {
+            if (bufferedWriter != null){
+                bufferedWriter.close();
+            }
+            if (socket != null){
+                socket.close();
+            }
+        }catch(IOException ex) {
             ex.printStackTrace();
+        }
+    }
+
+    @Override
+    public void run() {
+//        to listen for messages from client
+        try {
+            String MsgFromClient= bufferedReader.readLine();
+            // reads message from client until "quit" is sent
+            while (socket.isConnected() && !Objects.equals(MsgFromClient , "quit".toLowerCase(Locale.ROOT))) {
+                Respond(MsgFromClient);
+            }System.out.println("Closing connection");
+            closing(socket,bufferedReader,bufferedWriter);
+            System.exit(0);
+
+        }
+        catch(IOException ex){
+            closing(socket,bufferedReader,bufferedWriter);
         }
     }
 }

@@ -4,77 +4,169 @@ package org.RobotWorlds.Server;
 import java.net.*;
 //for buffered and printStream
 import java.io.*;
+import java.util.Objects;
 import java.util.Scanner;
 
+// IP Address of server and port number?
+
 public class Client {
-    /* makes a connection to our server,
-writes a string,
-gets the response string
-and then exit.*/
 
-    public static void main(String[] args) {
-/*        what connects machines.
-        the machines must have information about each other's network
-        connection.
- */
-        final PrintStream out;
-        Socket socket = null;
-//        read data from a source (reading characters from server)
-        InputStreamReader inputStreamReader = null;
-//        send messages
-        OutputStreamWriter outputStreamWriter = null;
-//        reads large block an array at a time, can flush when full,response or receive messages
-        BufferedReader bufferedReader = null;
-        BufferedWriter bufferedWriter = null;
+    // initialize socket and input / output streams
+    private Socket socket = null;
+    private BufferedReader bufferedReader = null;
+    private BufferedWriter bufferedWriter = null;
+    private String name;
 
+//    constructor to instantiate properties
+    public Client(Socket socket, String name){
+        try{
+        this.socket = socket;
+//      sends output to the socket (sending)
+        this.bufferedWriter = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
+//      receive response from server (listening)
+        this.bufferedReader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+        this.name = name;
+        }
+        catch(IOException ex){
+            closingAll(socket, bufferedReader, bufferedWriter);
+        }
+    }
+
+    public void sendRequest(){
         try {
-            socket = new Socket("localhost", 5000);
+            bufferedWriter.write(name);
+            bufferedWriter.newLine();
+            bufferedWriter.flush();
 
-            inputStreamReader = new InputStreamReader(socket.getInputStream());
-            outputStreamWriter = new OutputStreamWriter(socket.getOutputStream());
-
-            out = new PrintStream(socket.getOutputStream());
-            BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-
-            bufferedReader = new BufferedReader(inputStreamReader);
-            bufferedWriter = new BufferedWriter(outputStreamWriter);
-
-//            because we are taking console input
             Scanner scanner = new Scanner(System.in);
-
-            out.println("Hello Kiddo");
-            out.flush();
-
-            while (true) {
-//                whatever is input is written to server
+            while (socket.isConnected()) {
                 String MsgToServer = scanner.nextLine();
                 bufferedWriter.write(MsgToServer);
                 bufferedWriter.newLine();
                 bufferedWriter.flush();
-                String MsgFromServer = bufferedReader.readLine();
-//            string value returned from server, waiting for response
+            }
+        }
+        catch(IOException ex){
+            closingAll(socket, bufferedReader, bufferedWriter);
+        }
+    }
 
-                System.out.println("Response: "+ MsgFromServer);
+    public void listeningForRespond(){
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    while (true){
 
-
-                if (MsgToServer.equalsIgnoreCase("quit")) {
-                    out.println("good bye");
-                    break;
+                        String MsgFromServer= (bufferedReader.readLine());
+                        if (socket.isConnected()){
+                            if ( MsgFromServer!= null && !MsgFromServer.equalsIgnoreCase( "quit") ){
+                            System.out.println("Response: "+ MsgFromServer);
+                            }
+                            else if(MsgFromServer==null && MsgFromServer.equalsIgnoreCase("quit"))
+                            {
+                            System.out.println("Disconnecting: "+socket.isClosed());
+                            closingAll(socket,bufferedReader,bufferedWriter);
+                            System.exit(1);
+                            }
+                        }
+                    }
+                }
+                catch(IOException ex){
+                    closingAll(socket, bufferedReader, bufferedWriter);
                 }
             }
-        }catch(IOException e){
-            e.printStackTrace();
-        }
-        finally {
-            try {
-                if (socket != null){socket.close();}
-                if (inputStreamReader != null){socket.close();}
-                if (outputStreamWriter != null){socket.close();}
-                if (bufferedReader != null){socket.close();}
-                if (bufferedWriter != null){socket.close();}
-            }catch(IOException e){
-                e.printStackTrace();
+        }).start();
+    }
+
+    public void closingAll(Socket socket, BufferedReader bufferedReader,BufferedWriter bufferedWriter){
+        try {
+            if (bufferedReader != null){
+                bufferedReader.close();
             }
+            if (bufferedWriter != null){
+                bufferedWriter.close();
+            }
+            if (socket != null){
+                socket.close();
+            }
+        }catch(IOException ex) {
+            ex.printStackTrace();
         }
+    }
+
+    public static void main(String[] args) throws IOException {
+/*      what connects machines.
+        the machines must have information
+        about each other's network
+        connection.
+ */
+        try {
+
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Connected");
+//      takes input from terminal
+        System.out.println("What would you like to name your robot?");
+        String name = scanner.nextLine();
+        Socket socket = new Socket("localhost", Server.PORT);
+
+
+        Client client = new Client(socket,name);
+        client.listeningForRespond();
+        client.sendRequest();
+        }catch(IOException ex) {
+            ex.printStackTrace();
+        }
+
+
+
+//        try {
+//
+//            inputStreamReader = new InputStreamReader(socket.getInputStream());
+//            outputStreamWriter = new OutputStreamWriter(socket.getOutputStream());
+//
+//            out = new PrintStream(socket.getOutputStream());
+//            BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+//
+//            bufferedReader = new BufferedReader(inputStreamReader);
+//            bufferedWriter = new BufferedWriter(outputStreamWriter);
+//
+////            because we are taking console input
+//
+//            out.println("Hello World");
+////            out.flush();
+//
+//            while (true) {
+//                String MsgFromServer = bufferedReader.readLine();
+//
+////                whatever is input is written to server
+//                String MsgToServer = scanner.nextLine();
+//                bufferedWriter.write(MsgToServer);
+//                bufferedWriter.newLine();
+//                bufferedWriter.flush();
+////            string value returned from server, waiting for response
+//
+//                System.out.println("Response: "+ MsgFromServer);
+//
+//
+//                if (MsgToServer.equalsIgnoreCase("quit")) {
+//                    out.println("good bye");
+//                    break;
+//                }
+//            }
+//        }catch(IOException e){
+//            e.printStackTrace();
+//        }
+//        finally {
+//            try {
+//                if (socket != null){socket.close();}
+//                if (inputStreamReader != null){socket.close();}
+//                if (outputStreamWriter != null){socket.close();}
+//                if (bufferedReader != null){socket.close();}
+//                if (bufferedWriter != null){socket.close();}
+//            }catch(IOException e){
+//                e.printStackTrace();
+//            }
+//        }
     }
 }
