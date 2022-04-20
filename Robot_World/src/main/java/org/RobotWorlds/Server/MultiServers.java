@@ -15,24 +15,22 @@ public class MultiServers extends Server{
 
         ServerSocket s = new ServerSocket( Server.PORT);
         System.out.println("Server started and running\nWaiting for client connections...");
-
         while(true) {
             try {
                 //halted till client connection
                 Socket socket = s.accept();
                 System.out.println("Client accepted!\nIP & Port is: " + socket);
 
-                Runnable runnable = new Server(socket);
-                Thread thread = new Thread(runnable);
-                thread.start();
-
-            } catch(IOException e) {
-                e.printStackTrace();
+                Runnable r = new Server(socket);
+                Thread task = new Thread(r);
+                task.start();
+            } catch(IOException ex) {
+                ex.printStackTrace();
             }catch(Exception exception) {
                 s.close();
                 System.exit(-1);
             }
-//            catch(ClassNotFoundException classNotFoundException) {
+            // catch(ClassNotFoundException classNotFoundException) {
 //                classNotFoundException;
 //            }
         }

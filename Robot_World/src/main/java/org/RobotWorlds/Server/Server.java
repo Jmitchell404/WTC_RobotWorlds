@@ -3,9 +3,6 @@ package org.RobotWorlds.Server;
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.util.ArrayList;
-import java.util.Locale;
-import java.util.Objects;
 
 public class Server implements Runnable {
 
@@ -14,7 +11,6 @@ public class Server implements Runnable {
     private BufferedReader bufferedReader;
     private BufferedWriter bufferedWriter;
     private String robotName;
-
 
     public Server(Socket socket) throws IOException {
          /*        what connects machines.
@@ -39,7 +35,6 @@ public class Server implements Runnable {
         }
     }
 
-
     public void Respond(String MsgFromClient){
 //        sending response
         try {
@@ -48,10 +43,9 @@ public class Server implements Runnable {
             bufferedWriter.newLine();
             bufferedWriter.flush();
         }catch(IOException ex){
-                closing(socket, bufferedReader, bufferedWriter);
+            closing(socket, bufferedReader, bufferedWriter);
         }
     }
-
     public void closing(Socket socket, BufferedReader bufferedReader,BufferedWriter bufferedWriter){
         try {
             if (bufferedReader != null){
@@ -68,20 +62,20 @@ public class Server implements Runnable {
         }
     }
 
-    @Override
     public void run() {
-//        to listen for messages from client
         try {
-            String MsgFromClient= bufferedReader.readLine();
-            // reads message from client until "quit" is sent
-            while (socket.isConnected() && !Objects.equals(MsgFromClient , "quit".toLowerCase(Locale.ROOT))) {
+            String MsgFromClient;
+            while ((MsgFromClient = bufferedReader.readLine()) != null) {
                 Respond(MsgFromClient);
-            }System.out.println("Closing connection");
-            closing(socket,bufferedReader,bufferedWriter);
-            System.exit(0);
 
-        }
-        catch(IOException ex){
+                if (MsgFromClient.equalsIgnoreCase("quit")) {
+                    System.out.println("Shutting down server");
+                    closing(socket,bufferedReader,bufferedWriter);
+                    System.exit(0);
+                    break;
+                }
+            }
+        }catch(IOException ex){
             closing(socket,bufferedReader,bufferedWriter);
         }
     }
