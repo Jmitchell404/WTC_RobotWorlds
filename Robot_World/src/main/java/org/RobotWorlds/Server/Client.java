@@ -4,7 +4,6 @@ package org.RobotWorlds.Server;
 import java.net.*;
 //for buffered and printStream
 import java.io.*;
-import java.util.Objects;
 import java.util.Scanner;
 
 public class Client {
@@ -59,12 +58,12 @@ public class Client {
                     while (socket.isConnected()) {
                         MsgFromClient = bufferedReader.readLine();
                         System.out.println("Response: "+ MsgFromClient);
-
-                        if (MsgFromClient.equalsIgnoreCase("quit")){
-                            System.out.println("Disconnected "+ socket.isClosed() );
-                            closingAll(socket, bufferedReader, bufferedWriter);
-                            System.exit(-1);
-                        }
+//
+//                        if (MsgFromClient.equalsIgnoreCase("quit")){
+//                            System.out.println("Disconnected "+ socket.isClosed() );
+//                            closingAll(socket, bufferedReader, bufferedWriter);
+//                            System.exit(-1);
+//                        }
                     }
                 }
                 catch(IOException ex){

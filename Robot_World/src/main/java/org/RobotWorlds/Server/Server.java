@@ -7,7 +7,7 @@ import java.net.Socket;
 public class Server implements Runnable {
 
     protected static final int PORT = 5000;
-    private Socket socket = null;
+    private Socket client = null;
     private BufferedReader bufferedReader;
     private BufferedWriter bufferedWriter;
     private String robotName;
@@ -17,7 +17,7 @@ public class Server implements Runnable {
      the machines must have information about each other's network
      connection.*/
         try {
-            this.socket = socket;
+            this.client = socket;
 
             String clientMachine = socket.getInetAddress().getHostName();
             System.out.println("Connection from " + clientMachine);
@@ -28,6 +28,7 @@ public class Server implements Runnable {
             this.bufferedReader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
             this.robotName = bufferedReader.readLine();
 
+            System.out.println("Thread started with name:" + Thread.currentThread().getName());
             Respond("Robot launched ");
 
         }catch(IOException ex){
@@ -39,11 +40,14 @@ public class Server implements Runnable {
 //        sending response
         try {
             System.out.println(robotName+": " + MsgFromClient);
-            bufferedWriter.write("Received message ");
+            System.out.println("Received message from "+Thread.currentThread().getName() + " : " + MsgFromClient);
+            bufferedWriter.write(MsgFromClient);
             bufferedWriter.newLine();
             bufferedWriter.flush();
         }catch(IOException ex){
-            closing(socket, bufferedReader, bufferedWriter);
+            closing(client, bufferedReader, bufferedWriter);
+        }catch (Exception ex) {
+            System.out.println("Exception in Thread Run. Exception : " + ex);
         }
     }
     public void closing(Socket socket, BufferedReader bufferedReader,BufferedWriter bufferedWriter){
@@ -66,17 +70,20 @@ public class Server implements Runnable {
         try {
             String MsgFromClient;
             while ((MsgFromClient = bufferedReader.readLine()) != null) {
+                MsgFromClient = MsgFromClient.replaceAll("[^A-Za-z0-9 ]", "");
                 Respond(MsgFromClient);
 
                 if (MsgFromClient.equalsIgnoreCase("quit")) {
                     System.out.println("Shutting down server");
-                    closing(socket,bufferedReader,bufferedWriter);
+                    closing(client,bufferedReader,bufferedWriter);
                     System.exit(0);
                     break;
                 }
             }
         }catch(IOException ex){
-            closing(socket,bufferedReader,bufferedWriter);
+            closing(client,bufferedReader,bufferedWriter);
+        }catch (Exception ex) {
+            System.out.println("Exception in Thread Run. Exception : " + ex);
         }
     }
 }

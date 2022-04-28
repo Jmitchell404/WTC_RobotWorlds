@@ -6,11 +6,15 @@
   <component name="ChangeListManager">
     <list default="true" id="cbe4c67b-84c3-404b-aedc-51eeea9837eb" name="Changes" comment="Server/Client connection, quit command">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Robot_World/src/main/java/org/RobotWorlds/Robot.java" beforeDir="false" afterPath="$PROJECT_DIR$/Robot_World/src/main/java/org/RobotWorlds/Robot.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Robot_World/src/main/java/org/RobotWorlds/Server/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/Robot_World/src/main/java/org/RobotWorlds/Server/Client.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Robot_World/src/main/java/org/RobotWorlds/Server/MultiServers.java" beforeDir="false" afterPath="$PROJECT_DIR$/Robot_World/src/main/java/org/RobotWorlds/Server/MultiServers.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Robot_World/src/main/java/org/RobotWorlds/Server/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/Robot_World/src/main/java/org/RobotWorlds/Server/Server.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Robot_World/target/classes/org/RobotWorlds/Robot.class" beforeDir="false" afterPath="$PROJECT_DIR$/Robot_World/target/classes/org/RobotWorlds/Robot.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Robot_World/target/classes/org/RobotWorlds/Server/Client$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/Robot_World/target/classes/org/RobotWorlds/Server/Client$1.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Robot_World/target/classes/org/RobotWorlds/Server/Client.class" beforeDir="false" afterPath="$PROJECT_DIR$/Robot_World/target/classes/org/RobotWorlds/Server/Client.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Robot_World/target/classes/org/RobotWorlds/Server/MultiServers.class" beforeDir="false" afterPath="$PROJECT_DIR$/Robot_World/target/classes/org/RobotWorlds/Server/MultiServers.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Robot_World/target/classes/org/RobotWorlds/Server/Server.class" beforeDir="false" afterPath="$PROJECT_DIR$/Robot_World/target/classes/org/RobotWorlds/Server/Server.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,7 +45,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$USER_HOME$/student_work/submission-102-java-004-toy_robot" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="reference.settingsdialog.project.gant" />
   </component>
   <component name="RecentsManager">
