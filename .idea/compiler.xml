@@ -7,11 +7,13 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="Robot_World" />
+        <module name="RobotWorlds" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="robot-worlds" target="11" />
       <module name="Robot_World" target="1.7" />
+      <module name="RobotWorlds" target="11" />
     </bytecodeTargetLevel>
   </component>
 </project>

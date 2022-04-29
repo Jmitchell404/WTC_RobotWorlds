@@ -5,12 +5,57 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cbe4c67b-84c3-404b-aedc-51eeea9837eb" name="Changes" comment="Server/Client connection, quit command">
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_fasterxml_jackson_core_jackson_annotations_2_11_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_fasterxml_jackson_core_jackson_core_2_11_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_fasterxml_jackson_core_jackson_databind_2_11_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/RobotWorlds.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__junit_junit_4_11.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_hamcrest_hamcrest_core_1_3.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Robot_World/src/main/java/org/RobotWorlds/Server/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/Robot_World/src/main/java/org/RobotWorlds/Server/Client.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Robot_World/src/main/java/org/RobotWorlds/Server/MultiServers.java" beforeDir="false" afterPath="$PROJECT_DIR$/Robot_World/src/main/java/org/RobotWorlds/Server/MultiServers.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Robot_World/src/main/java/org/RobotWorlds/Server/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/Robot_World/src/main/java/org/RobotWorlds/Server/Server.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Robot_World/target/classes/org/RobotWorlds/Server/Client$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/Robot_World/target/classes/org/RobotWorlds/Server/Client$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Robot_World/target/classes/org/RobotWorlds/Server/Client.class" beforeDir="false" afterPath="$PROJECT_DIR$/Robot_World/target/classes/org/RobotWorlds/Server/Client.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RobotWorlds/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/RobotWorlds/.idea/codeStyles/Project.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/RobotWorlds/.idea/codeStyles/codeStyleConfig.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/RobotWorlds/.idea/compiler.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/RobotWorlds/.idea/jarRepositories.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/RobotWorlds/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/RobotWorlds/.idea/runConfigurations.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/RobotWorlds/.idea/uiDesigner.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/RobotWorlds/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/RobotWorlds/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/RobotWorlds/src/main/java/Game/Game.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/RobotWorlds/src/main/java/client/Client.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/RobotWorlds/src/main/java/configuration/Configuration.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/RobotWorlds/src/main/java/configuration/ConfigurationExeptions.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/RobotWorlds/src/main/java/configuration/ConfigurationManagement.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/RobotWorlds/src/main/java/configuration/Json.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/RobotWorlds/src/main/java/configuration/configuration.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/RobotWorlds/src/main/java/requests/RequestException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/RobotWorlds/src/main/java/requests/RequestManager.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/RobotWorlds/src/main/java/requests/RequestMessages.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/RobotWorlds/src/main/java/requests/Requests.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/RobotWorlds/src/main/java/requests/request.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/RobotWorlds/src/main/java/responses/Response.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/RobotWorlds/src/main/java/responses/response.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/RobotWorlds/src/main/java/server/Server.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/RobotWorlds/src/main/java/server/ThreadHandler.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/RobotWorlds/target/classes/Game/Game.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/RobotWorlds/target/classes/client/Client$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/RobotWorlds/target/classes/client/Client.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/RobotWorlds/target/classes/configuration/Configuration.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/RobotWorlds/target/classes/configuration/ConfigurationException.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/RobotWorlds/target/classes/configuration/ConfigurationManagement.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/RobotWorlds/target/classes/configuration/Json.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/RobotWorlds/target/classes/requests/RequestException.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/RobotWorlds/target/classes/requests/RequestManager.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/RobotWorlds/target/classes/requests/RequestMessages.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/RobotWorlds/target/classes/requests/Requests.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/RobotWorlds/target/classes/responses/Response.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/RobotWorlds/target/classes/server/Server.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/RobotWorlds/target/classes/server/ThreadHandler.class" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -30,6 +75,9 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="ProblemsViewState">
+    <option name="selectedIndex" value="2" />
+  </component>
   <component name="ProjectCodeStyleSettingsMigration">
     <option name="version" value="2" />
   </component>
@@ -41,13 +89,27 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$USER_HOME$/student_work/submission-102-java-004-toy_robot" />
-    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.project.gant" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/pom.xml" />
+    <property name="project.structure.last.edited" value="Problems" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
+    <property name="settings.editor.selected.configurable" value="http.certificates" />
+    <property name="two.files.diff.last.used.file" value="$PROJECT_DIR$/pom.xml" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src" />
+    </key>
     <key name="ExtractSuperBase.RECENT_KEYS">
       <recent name="org.RobotWorlds.Commands" />
     </key>
+  </component>
+  <component name="RunAnythingCache">
+    <option name="myCommands">
+      <command value="mvn clean:clean" />
+    </option>
   </component>
   <component name="RunManager" selected="Application.Client">
     <configuration name="Client" type="Application" factoryName="Application" singleton="false" temporary="true" nameIsGenerated="true">
@@ -63,12 +125,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="MultiServers" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="org.RobotWorlds.Server.MultiServers" />
-      <module name="Robot_World" />
+    <configuration name="Client" type="Application" factoryName="Application" singleton="false" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="client.Client" />
+      <module name="RobotWorlds" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="org.RobotWorlds.Server.*" />
+          <option name="PATTERN" value="client.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -89,12 +151,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Robot" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="org.RobotWorlds.Robot" />
-      <module name="Robot_World" />
+    <configuration name="Server" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="server.Server" />
+      <module name="RobotWorlds" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="org.RobotWorlds.*" />
+          <option name="PATTERN" value="server.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -103,16 +165,16 @@
       </method>
     </configuration>
     <list>
-      <item itemvalue="Application.Client" />
-      <item itemvalue="Application.Robot" />
       <item itemvalue="Application.MultiServers" />
+      <item itemvalue="Application.Client" />
+      <item itemvalue="Application.Server" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="Application.Client" />
+        <item itemvalue="Application.Server" />
+        <item itemvalue="Application.Client" />
         <item itemvalue="Application.MultiServers" />
-        <item itemvalue="Application.MultiServers" />
-        <item itemvalue="Application.Robot" />
       </list>
     </recent_temporary>
   </component>
