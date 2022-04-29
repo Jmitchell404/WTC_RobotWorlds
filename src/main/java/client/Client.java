@@ -13,11 +13,13 @@ import java.util.Scanner;
  * other client by looping through it.
  */
 public class Client {
+    // initialize socket and input / output streams
     // A client has a socket to connect to the server and
     // a reader and writer to receive and send messages respectively.
-    private Socket socket;
-    private BufferedReader bufferedReader;
-    private BufferedWriter bufferedWriter;
+    static Scanner scanner;
+    private Socket socket = null;
+    private BufferedReader bufferedReader = null;
+    private BufferedWriter bufferedWriter = null;
     private String robotName;
 
 
@@ -25,35 +27,52 @@ public class Client {
         try {
             this.socket = socket;
             this.robotName = robotName;
-            this.bufferedReader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+//      sends output to the socket (sending)
             this.bufferedWriter = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
-        } catch (IOException e) {
+//      receive response from server (listening)
+            this.bufferedReader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+        }  catch (IOException e) {
             // Gracefully close everything.
             terminateWorld(socket, bufferedReader, bufferedWriter);
         }
     }
 
-    public Client() {
-
-    }
 
     // Run the program.
     public static void main(String[] args) throws IOException {
         // Get a robot name to label a socket connection.
-        Scanner scanner = new Scanner(System.in);
-        String robotName = scanner.nextLine();
-        // Create a socket to connect to the server.
-        ConfigurationManagement.getInstance().loadConfiguration("src/main/java/configuration/configuration.json");
-        Configuration conFig = ConfigurationManagement.getInstance().getConfiguration();
-        int port = conFig.getPort();
-        Socket socket = new Socket("localhost", port);
+        try {
+            scanner = new Scanner(System.in);
 
-        // Pass the socket and give the client a username.
-        Client client = new Client(socket, robotName);
+            System.out.println("Connected");
+            System.out.println("What would you like to name your robot?");
 
-        // Infinite loop to read and send messages.
-        client.listenForMessage();
-        client.sendMessage();
+            String robotName = scanner.nextLine();
+
+            while (robotName.isBlank()) {
+                System.out.println("What would you like to name your robot?");
+                robotName = scanner.nextLine();
+            }
+
+
+            // Create a socket to connect to the server.
+            ConfigurationManagement.getInstance().loadConfiguration("src/main/java/configuration/configuration.json");
+            Configuration conFig = ConfigurationManagement.getInstance().getConfiguration();
+            int port = conFig.getPort();
+
+            Socket socket = new Socket("localhost", port);
+
+            // Pass the socket and give the client a username.
+            Client client = new Client(socket, robotName);
+
+            // Infinite loop to read and send messages.
+            client.listenForMessage();
+            client.sendMessage();
+        }catch(IOException ex) {
+            ex.printStackTrace();
+            System.err.println("Couldn't get I/O for the connection to localhost");
+            System.exit(1);
+        }
     }
 
     // Sending a message isn't blocking and can be done without spawning a thread, unlike waiting for a message.
@@ -64,12 +83,17 @@ public class Client {
             bufferedWriter.newLine();
             bufferedWriter.flush();
             // Create a scanner for user input.
-            Scanner scanner = new Scanner(System.in);
+            scanner = new Scanner(System.in);
             // While still connected with the server, scan the terminal and then send the message.
             while (socket.isConnected()) {
-//                System.out.print("> ");
+                System.out.println((robotName + " - What must I do?").strip().toLowerCase());
                 String clientRequest = scanner.nextLine();
-                bufferedWriter.write(robotName + ": " + clientRequest);
+
+                while (clientRequest.isBlank()){
+                    System.out.println((robotName + " - What must I do?").strip().toLowerCase());
+                    clientRequest = scanner.nextLine();
+                }
+                bufferedWriter.write(robotName + " : " + clientRequest);
                 bufferedWriter.newLine();
                 bufferedWriter.flush();
             }
@@ -84,17 +108,17 @@ public class Client {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                String clientRequest;
-                // While there is still a connection with the server, continue to listen for messages on a separate thread.
-                while (socket.isConnected()) {
-                    try {
+                try {
+                    String clientRequest;
+                    // While there is still a connection with the server, continue to listen for messages on a separate thread.
+                    while (socket.isConnected()&& (clientRequest = bufferedReader.readLine()) != null) {
+
                         // Get requests from clients and respond in the console.
-                        clientRequest = bufferedReader.readLine();
                         System.out.println(clientRequest);
-                    } catch (IOException e) {
-                        // Close everything gracefully.
-                        terminateWorld(socket, bufferedReader, bufferedWriter);
                     }
+                }catch (IOException e) {
+                    // Close everything gracefully.
+                    terminateWorld(socket, bufferedReader, bufferedWriter);
                 }
             }
         }).start();
