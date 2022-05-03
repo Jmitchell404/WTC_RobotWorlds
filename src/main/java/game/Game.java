@@ -1,4 +1,4 @@
-package Game;
+package game;
 
 public class Game {
 //    static Scanner scanner;
