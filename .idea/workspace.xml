@@ -5,10 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cbe4c67b-84c3-404b-aedc-51eeea9837eb" name="Changes" comment="Server/Client connection, quit command">
-      <change afterPath="$PROJECT_DIR$/RobotWorlds.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/robot/RobotExeptions.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Game/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/game/Game.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,6 +49,9 @@
     <property name="settings.editor.selected.configurable" value="reference.settingsdialog.project.gant" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/java/robot" />
+    </key>
     <key name="ExtractSuperBase.RECENT_KEYS">
       <recent name="org.RobotWorlds.Commands" />
     </key>

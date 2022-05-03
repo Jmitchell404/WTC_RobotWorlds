@@ -29,12 +29,11 @@ public class RobotManager {
         robotConfig = Json.fetchingJson(sorting, Robot.class);
     }
 
-    public Robot getRobotStats() throws RobotExeptions {
+    public Robot getRobotStats() throws RobotExceptions {
         if (robotManager == null) {
-            throw new RobotExeptions ("Command is not available.");
+            throw new RobotExceptions("Command is not available.");
         }
         return robotConfig;
     }
-
 }
 
