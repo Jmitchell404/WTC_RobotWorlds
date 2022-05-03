@@ -26,14 +26,19 @@ public class ThreadHandler implements Runnable {
         try {
             this.socket = socket;
             this.bufferedReader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-            this.bufferedWriter = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
+            this.bufferedWriter= new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
 
             // When a client connects their robotName is sent.
             this.robotName = bufferedReader.readLine();
 
             // Adding a new clientHandler to the array, so they can interact with other robots.
             clientHandlers.add(this);
-            responseMessage("OddWorld: " + robotName + " has been launched!");
+            responseMessage("A droid called " + robotName + " has been launched!");
+
+
+            System.out.println("Thread started with name : " + Thread.currentThread().getName());
+
+
         } catch (IOException e) {
             // Close everything more gracefully.
             closeEverything(socket, bufferedReader, bufferedWriter);
@@ -47,24 +52,28 @@ public class ThreadHandler implements Runnable {
     */
     @Override
     public void run() {
-        String messageFromClient;
-        // Continue to listen for messages while a connection with the client is still established.
-        while (socket.isConnected()) {
-            try {
-                messageFromClient = bufferedReader.readLine();
-                if (messageFromClient.equalsIgnoreCase("quit")) {
-                    removeClientHandler();
-                }
-
-                // Read what the client sent and then send it to the server.
+        try {
+            String messageFromClient;
+            // Continue to listen for messages while a connection with the client is still established.
+            while (socket.isConnected() && (messageFromClient=bufferedReader.readLine())!= null) {
+                messageFromClient = messageFromClient.replaceAll("[^A-Za-z0-9 ]", "");
+                System.out.println("Received message from " + Thread.currentThread().getName() + " : " + messageFromClient);
                 responseMessage(messageFromClient);
                 Server.serverResponse(messageFromClient);
 
-            } catch (IOException e) {
-                // Close everything gracefully.
-                closeEverything(socket, bufferedReader, bufferedWriter);
-                break;
+                if (messageFromClient.equalsIgnoreCase("quit")){
+                    removeClientHandler();
+                }
             }
+
+            // Read what the client sent and then send it to the server.
+
+
+        } catch (IOException e) {
+            // Close everything gracefully.
+            closeEverything(socket, bufferedReader, bufferedWriter);
+        } catch (Exception ex) {
+            System.out.println("Exception in Thread Run. Exception : " + ex);
         }
     }
 
@@ -78,14 +87,15 @@ public class ThreadHandler implements Runnable {
             try {
                 // You don't want to broadcast the message to all the users just the robot and server.
                 if (clientHandler.robotName.equals(robotName)) {
-                    clientHandler.bufferedWriter.write(response);
+                    clientHandler. bufferedWriter.write(this.robotName+" entered : " + response);
                     clientHandler.bufferedWriter.newLine();
                     clientHandler.bufferedWriter.flush();
-                    Server.serverResponse(response);
                 }
             } catch (IOException e) {
                 // close everything.
                 closeEverything(socket, bufferedReader, bufferedWriter);
+            }catch (Exception ex) {
+                System.out.println("Exception in Thread Run. Exception : " + ex);
             }
         }
     }

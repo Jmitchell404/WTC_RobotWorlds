@@ -24,8 +24,10 @@ public class Server {
         Configuration conFig = ConfigurationManagement.getInstance().getConfiguration();
         int port = conFig.getPort();
         String host = conFig.getHost();
-        System.out.println("Scanning the galaxy....The world " + host + " star number " + port + " was located");
+
+        System.out.println("Scanning the galaxy....The world " + host + " star number "+ port +" was located");
         System.out.println("Conditions are suitable for droid inhabitants");
+
         ServerSocket serverSocket = new ServerSocket(port);
         Server server = new Server(serverSocket);
         server.startServer();
@@ -33,13 +35,14 @@ public class Server {
 
     public void startServer() {
         try {
-            System.out.println("    > Scanning for robots..");
+            System.out.println("    > Server started and scanning for robots..");
             // Listen for connections (clients to server) on specified port.
             while (!serverSocket.isClosed()) {
 //                TimeUnit.SECONDS.sleep(5);
                 // Closed in the Client Handler.
                 Socket socket = serverSocket.accept();
-//               add jason object ROBOT : LAUNCHED
+//                add jason object ROBOT : LAUNCHED
+
                 ThreadHandler clientHandler = new ThreadHandler(socket);
                 Thread thread = new Thread(clientHandler);
                 /*
@@ -51,10 +54,12 @@ public class Server {
             }
         } catch (IOException e) {
             closeServerSocket();
+            System.out.println("Exception caught when trying to listen on port or listening for a connection");
+            System.out.println(e.getMessage());
         }
     }
 
-    // Close the server socket gracefully.
+    // Close the server socket.
     public void closeServerSocket() {
         try {
             if (serverSocket != null) {
