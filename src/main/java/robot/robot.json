@@ -1,0 +1,9 @@
+{
+  "robot" : "name",
+  "direction" : "north",
+  "position" : [0,0],
+  "armour" : 3,
+  "ammunition" : 5,
+  "reload" : 5,
+  "repair" : 3
+}

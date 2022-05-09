@@ -1,0 +1,13 @@
+/home/wtc/student_work/RobotWorlds/src/main/java/client/Client.java
+/home/wtc/student_work/RobotWorlds/src/main/java/configuration/Json.java
+/home/wtc/student_work/RobotWorlds/src/main/java/server/ThreadHandler.java
+/home/wtc/student_work/RobotWorlds/src/main/java/server/Server.java
+/home/wtc/student_work/RobotWorlds/src/main/java/requests/Requests.java
+/home/wtc/student_work/RobotWorlds/src/main/java/configuration/ConfigurationManagement.java
+/home/wtc/student_work/RobotWorlds/src/main/java/requests/RequestException.java
+/home/wtc/student_work/RobotWorlds/src/main/java/configuration/ConfigurationExeptions.java
+/home/wtc/student_work/RobotWorlds/src/main/java/requests/RequestMessages.java
+/home/wtc/student_work/RobotWorlds/src/main/java/Game/Game.java
+/home/wtc/student_work/RobotWorlds/src/main/java/configuration/Configuration.java
+/home/wtc/student_work/RobotWorlds/src/main/java/responses/Response.java
+/home/wtc/student_work/RobotWorlds/src/main/java/requests/RequestManager.java
