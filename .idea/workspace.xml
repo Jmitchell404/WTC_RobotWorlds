@@ -58,13 +58,39 @@
       <recent name="org.RobotWorlds.Commands" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Client">
+  <component name="RunManager" selected="Application.Server">
     <configuration name="Client" type="Application" factoryName="Application" singleton="false" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="org.RobotWorlds.Server.Client" />
       <module name="Robot_World" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="org.RobotWorlds.Server.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MultiServers" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="org.RobotWorlds.Server.MultiServers" />
+      <module name="Robot_World" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.RobotWorlds.Server.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Robot" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="org.RobotWorlds.Robot" />
+      <module name="Robot_World" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.RobotWorlds.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -108,39 +134,16 @@
       </MavenSettings>
       <method v="2" />
     </configuration>
-    <configuration name="MultiServers" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="org.RobotWorlds.Server.MultiServers" />
-      <module name="Robot_World" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="org.RobotWorlds.Server.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="Robot" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="org.RobotWorlds.Robot" />
-      <module name="Robot_World" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="org.RobotWorlds.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <list>
+      <item itemvalue="Application.Server" />
       <item itemvalue="Application.Client" />
       <item itemvalue="Application.Robot" />
       <item itemvalue="Application.MultiServers" />
+      <item itemvalue="Maven.RobotWorlds" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Server" />
         <item itemvalue="Application.MultiServers" />
         <item itemvalue="Application.Client" />
         <item itemvalue="Application.MultiServers" />
