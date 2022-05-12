@@ -1,4 +1,4 @@
-package robot;
+package world;
 
 /**
  * The behaviour of the Robot is encapsulated in the Robot object.

@@ -1,8 +1,13 @@
-//package za.co.wethinkcode.robotworld.commands;
-//
-//public class Robots extends Command{
-//    public Robots() {
-//        super("robots");
-//    }
-//}
+package client;
+
+public class Robots extends Command{
+    public Robots(String[] args) {
+        super(args);
+    }
+
+    @Override
+    public void handleResponse(String response) {
+
+    }
+}
 

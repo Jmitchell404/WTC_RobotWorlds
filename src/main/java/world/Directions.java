@@ -1,16 +1,16 @@
-package Commands;
+package world;
 
-public enum Direction {
+public enum Directions {
     NORTH, EAST, SOUTH, WEST;
 
     static
-    private final Direction[] values = values();
+    private final Directions[] values = values();
 
-    public Direction left() {
+    public Directions left() {
         return values[Math.floorMod(ordinal() - 1, values.length)];
     }
 
-    public Direction right() {
+    public Directions right() {
         return values[Math.floorMod(ordinal() + 1, values.length)];
     }
 }

@@ -1,9 +1,8 @@
-package za.co.wethinkcode.robotworld.commands;
+package Commands;
 
 import org.json.simple.JSONObject;
-import za.co.wethinkcode.robotworld.Server;
 
-public class State extends Command{
+public class State extends CommandManager {
 
 
     public State(JSONObject args) {
@@ -18,7 +17,7 @@ public class State extends Command{
 
     private JSONObject stateResponse() {
         JSONObject status = new JSONObject();
-        Command launch = new Launch(status);
+        CommandManager launch = new Launch(status);
         return null;
     }
 }

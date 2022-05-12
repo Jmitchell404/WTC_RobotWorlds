@@ -1,10 +1,10 @@
-package za.co.wethinkcode.robotworld.commands;
+package client;
 
 import org.json.simple.JSONObject;
 
 
 public abstract class Command {
-//    private final String name;
+
     private String argument;
     public JSONObject command;
     public String[] args;
@@ -13,26 +13,10 @@ public abstract class Command {
         this.args = args;
     }
 
-//    public Command(String name){
-//        this.name = name.trim().toLowerCase();
-//        this.argument = "";
-//    }
-//
-//    public Command(String name, String argument) {
-//        this(name);
-//        this.argument = argument.trim();
-//    }
-//
-//    public Command(String name, String argument ) {
-//        this(name);
-//        this.argument = argument.trim();
-//    }
 
-//    public String getName() {                                                                           //<2>
-//        return name;
-//    }
-
-    public abstract JSONObject execute();
+    public JSONObject execute() {
+        return null;
+    }
 
     public String getArgument() {
         return this.argument;
@@ -42,28 +26,28 @@ public abstract class Command {
 
         String[] args = instruction.toLowerCase().trim().split(" ");
         switch (args[0]){
-//            case "left":
-//                return new Left();
-//            case "right":
-//                return new Right();
-//            case "help":
-//                return new Help();
-//            case "fire":
-//                return new Fire();
-//            case "look":
-//                return new Look();
-//            case "state":
-//                return new State();
-//            case "dump":
-//                return new Dump();
-//            case "robots":
-//                return new Robots();
-//            case "forward":
-//                return new Forward(args[1]);
-//            case "back":
-//                return new Back(args[1]);
+           case "left":
+               return new Left(args);
+           case "right":
+               return new Right(args);
+           case "help":
+               return new Help(args);
+           case "fire":
+               return new Fire(args);
+           case "look":
+               return new Look(args);
+           case "state":
+               return new State(args);
+           case "dump":
+               return new Dump(args);
+           case "robots":
+               return new Robots(args);
+           case "forward":
+               return new Forward(args);
+           case "back":
+               return new Back(args);
             case "launch":
-                return new Launch(args);
+                return new LaunchClient(args);
             default:
                 throw new IllegalArgumentException("Unsupported command: " + instruction);
         }
