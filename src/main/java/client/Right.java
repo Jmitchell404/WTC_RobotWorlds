@@ -1,8 +1,13 @@
-//package za.co.wethinkcode.robotworld.commands;
-//
-//public class Right extends Command{
-//    public Right() {
-//        super("right");
-//    }
-//}
+package client;
+
+public class Right extends Command{
+    public Right(String[] args) {
+        super(args);
+    }
+
+    @Override
+    public void handleResponse(String response) {
+
+    }
+}
 

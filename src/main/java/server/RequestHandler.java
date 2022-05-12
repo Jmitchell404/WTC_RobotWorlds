@@ -1,4 +1,4 @@
-package za.co.wethinkcode.robotworld;
+package server;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -12,25 +12,21 @@ import java.util.Vector;
 
 public class RequestHandler implements Runnable {
 
-    protected static final int PORT = 5000;
+    protected static final int PORT = 4000;
     private Socket client = null;
     private BufferedReader bufferedReader;
     private BufferedWriter bufferedWriter;
-    private String robotName;
 
     public RequestHandler(Socket socket) throws IOException {
-         /*        what connects machines.
-     the machines must have information about each other's network
-     connection.*/
+
         try {
             this.client = socket;
 
             String clientHostMachine = socket.getInetAddress().getHostName();
             System.out.println("Connection from " + clientHostMachine);
 
-            /*sending responds to client, outputToServer, managed*/
+
             this.bufferedWriter = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
-            /*receiving responds from client,inputToServer*/
             this.bufferedReader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
             String command = bufferedReader.readLine();
 
@@ -42,7 +38,6 @@ public class RequestHandler implements Runnable {
     }
 
     public void SendResponse(String MsgFromClient){
-//        sending response
         try {
             bufferedWriter.write(MsgFromClient);
             bufferedWriter.newLine();

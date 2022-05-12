@@ -1,4 +1,4 @@
-package za.co.wethinkcode.robotworld.commands;
+package client;
 
 
 import org.json.simple.JSONObject;
@@ -6,10 +6,10 @@ import org.json.simple.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Launch extends Command{
+public class LaunchClient extends Command{
 
 
-    public Launch(String[] args){
+    public LaunchClient(String[] args){
         super( args);
     }
 

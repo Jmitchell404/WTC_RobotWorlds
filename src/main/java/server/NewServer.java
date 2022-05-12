@@ -1,4 +1,4 @@
-package za.co.wethinkcode.robotworld;
+package server;
 
 import java.io.IOException;
 import java.net.ServerSocket;
@@ -8,12 +8,12 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-public class Server extends RequestHandler{
+public class NewServer extends RequestHandler{
 
   public static Map<String,RequestHandler> clients = new ConcurrentHashMap<>();
 
 
-  public Server(Socket socket)throws IOException{
+  public NewServer(Socket socket)throws IOException{
     super(socket);
   }
 
@@ -28,7 +28,6 @@ public class Server extends RequestHandler{
       System.out.println("Waiting for client connections...");
 
       while (true) {
-        //halted till client connection
         Socket clientSocket = serverSocket.accept();
         System.out.println("Client accepted!\nIP & Port is: " + clientSocket);
         RequestHandler worker = new RequestHandler(clientSocket);

@@ -1,11 +1,11 @@
-package za.co.wethinkcode.robotworld.commands;
+package Commands;
 
 import org.json.simple.JSONObject;
-import za.co.wethinkcode.robotworld.Server;
-import za.co.wethinkcode.robotworld.world.Position;
+import server.NewServer;
+import world.Position;
 
 
-public class Launch extends Command {
+public class Launch extends CommandManager {
 
     public Position position;
 
@@ -16,7 +16,7 @@ public class Launch extends Command {
     @Override
     public JSONObject execute() {
 
-        if (Server.clients.size() == 8){
+        if (NewServer.clients.size() == 8){
             return createWorldIsFullResponse();
         }
         else if (checkClientsHaveSameName()){
@@ -74,7 +74,7 @@ public class Launch extends Command {
     }
 
     private boolean checkClientsHaveSameName() {
-        for (String client: Server.clients.keySet()){
+        for (String client: NewServer.clients.keySet()){
             if (client.equalsIgnoreCase(args.get("robot").toString())){
                 return true;
             }

@@ -1,8 +1,13 @@
-//package za.co.wethinkcode.robotworld.commands;
-//
-//public class Help extends Command{
-//    public Help() {
-//        super("help");
-//    }
-//}
+package client;
+
+public class Help extends Command{
+    public Help(String[] args) {
+        super(args);
+    }
+
+    @Override
+    public void handleResponse(String response) {
+
+    }
+}
 

@@ -1,9 +1,8 @@
-package za.co.wethinkcode.robotworld.commands;
+package Commands;
 
 import org.json.simple.JSONObject;
-import za.co.wethinkcode.robotworld.Server;
 
-public class Dump extends Command{
+public class Dump extends CommandManager {
     public Dump(JSONObject args) {
         super(args);
     }
