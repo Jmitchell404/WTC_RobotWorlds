@@ -38,8 +38,6 @@ public abstract class Command {
                return new Look(args);
            case "state":
                return new State(args);
-           case "dump":
-               return new Dump(args);
            case "robots":
                return new Robots(args);
            case "forward":
